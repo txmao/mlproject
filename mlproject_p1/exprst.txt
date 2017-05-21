@@ -1,0 +1,480 @@
+$ Naive Approach
+1. ID3
+L=30
+K=20
+########## original tree (using information gain heuristic) printed bellow ##########
+
+exang = 0 : 
+| oldpeak = 0 : 
+| | thalach = 0 : 
+| | | chol = 0 : 
+| | | | fbs = 0 : 
+| | | | | trestbps = 0 : 
+| | | | | | sex = 0 : 1
+| | | | | | sex = 1 : 
+| | | | | | | age = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | age = 1 : 
+| | | | | | | | restecg = 0 : 
+| | | | | | | | | oldpeak = 0 : 1
+| | | | | | | | | oldpeak = 1 : 1
+| | | | | | | | restecg = 1 : 1
+| | | | | trestbps = 1 : 1
+| | | | fbs = 1 : 
+| | | | | age = 0 : 
+| | | | | | trestbps = 0 : 0
+| | | | | | trestbps = 1 : 1
+| | | | | age = 1 : 0
+| | | chol = 1 : 1
+| | thalach = 1 : 
+| | | sex = 0 : 
+| | | | fbs = 0 : 
+| | | | | trestbps = 0 : 1
+| | | | | trestbps = 1 : 
+| | | | | | restecg = 0 : 
+| | | | | | | oldpeak = 0 : 0
+| | | | | | | oldpeak = 1 : 0
+| | | | | | restecg = 1 : 1
+| | | | fbs = 1 : 0
+| | | sex = 1 : 
+| | | | trestbps = 0 : 
+| | | | | restecg = 0 : 
+| | | | | | chol = 0 : 
+| | | | | | | age = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | age = 1 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | chol = 1 : 
+| | | | | | | age = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | age = 1 : 1
+| | | | | restecg = 1 : 
+| | | | | | age = 0 : 
+| | | | | | | oldpeak = 0 : 1
+| | | | | | | oldpeak = 1 : 1
+| | | | | | age = 1 : 0
+| | | | trestbps = 1 : 
+| | | | | chol = 0 : 
+| | | | | | age = 0 : 
+| | | | | | | fbs = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | fbs = 1 : 1
+| | | | | | age = 1 : 
+| | | | | | | oldpeak = 0 : 0
+| | | | | | | oldpeak = 1 : 0
+| | | | | chol = 1 : 
+| | | | | | age = 0 : 1
+| | | | | | age = 1 : 
+| | | | | | | restecg = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | restecg = 1 : 1
+| oldpeak = 1 : 
+| | sex = 0 : 1
+| | sex = 1 : 
+| | | chol = 0 : 
+| | | | restecg = 0 : 0
+| | | | restecg = 1 : 
+| | | | | oldpeak = 0 : 0
+| | | | | oldpeak = 1 : 0
+| | | chol = 1 : 
+| | | | fbs = 0 : 1
+| | | | fbs = 1 : 0
+exang = 1 : 
+| sex = 0 : 
+| | age = 0 : 0
+| | age = 1 : 
+| | | fbs = 0 : 
+| | | | oldpeak = 0 : 0
+| | | | oldpeak = 1 : 1
+| | | fbs = 1 : 0
+| sex = 1 : 
+| | fbs = 0 : 
+| | | chol = 0 : 
+| | | | restecg = 0 : 
+| | | | | age = 0 : 
+| | | | | | oldpeak = 0 : 0
+| | | | | | oldpeak = 1 : 
+| | | | | | | trestbps = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | trestbps = 1 : 0
+| | | | | age = 1 : 
+| | | | | | trestbps = 0 : 0
+| | | | | | trestbps = 1 : 
+| | | | | | | oldpeak = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | oldpeak = 1 : 
+| | | | | | | | thalach = 0 : 
+| | | | | | | | | oldpeak = 0 : 0
+| | | | | | | | | oldpeak = 1 : 0
+| | | | | | | | thalach = 1 : 0
+| | | | restecg = 1 : 0
+| | | chol = 1 : 
+| | | | trestbps = 0 : 
+| | | | | oldpeak = 0 : 
+| | | | | | restecg = 0 : 0
+| | | | | | restecg = 1 : 
+| | | | | | | oldpeak = 0 : 0
+| | | | | | | oldpeak = 1 : 0
+| | | | | oldpeak = 1 : 
+| | | | | | age = 0 : 
+| | | | | | | restecg = 0 : 0
+| | | | | | | restecg = 1 : 1
+| | | | | | age = 1 : 1
+| | | | trestbps = 1 : 
+| | | | | oldpeak = 0 : 1
+| | | | | oldpeak = 1 : 0
+| | fbs = 1 : 0
+########## pruned tree (using information gain heuristic) printed bellow ##########
+
+exang = 0 : 1
+exang = 1 : 
+| sex = 0 : 
+| | age = 0 : 0
+| | age = 1 : 1
+| sex = 1 : 
+| | fbs = 0 : 
+| | | chol = 0 : 
+| | | | restecg = 0 : 
+| | | | | age = 0 : 
+| | | | | | oldpeak = 0 : 0
+| | | | | | oldpeak = 1 : 
+| | | | | | | trestbps = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | trestbps = 1 : 0
+| | | | | age = 1 : 
+| | | | | | trestbps = 0 : 0
+| | | | | | trestbps = 1 : 
+| | | | | | | oldpeak = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | oldpeak = 1 : 
+| | | | | | | | thalach = 0 : 
+| | | | | | | | | oldpeak = 0 : 0
+| | | | | | | | | oldpeak = 1 : 0
+| | | | | | | | thalach = 1 : 0
+| | | | restecg = 1 : 0
+| | | chol = 1 : 0
+| | fbs = 1 : 0
+########## original tree (using variance impurity heuristic) printed bellow ##########
+
+exang = 0 : 
+| oldpeak = 0 : 
+| | thalach = 0 : 
+| | | fbs = 0 : 
+| | | | chol = 0 : 
+| | | | | trestbps = 0 : 
+| | | | | | sex = 0 : 1
+| | | | | | sex = 1 : 
+| | | | | | | age = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | age = 1 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | trestbps = 1 : 1
+| | | | chol = 1 : 1
+| | | fbs = 1 : 
+| | | | chol = 0 : 
+| | | | | age = 0 : 
+| | | | | | trestbps = 0 : 0
+| | | | | | trestbps = 1 : 1
+| | | | | age = 1 : 0
+| | | | chol = 1 : 1
+| | thalach = 1 : 
+| | | sex = 0 : 
+| | | | fbs = 0 : 
+| | | | | trestbps = 0 : 1
+| | | | | trestbps = 1 : 
+| | | | | | restecg = 0 : 
+| | | | | | | oldpeak = 0 : 0
+| | | | | | | oldpeak = 1 : 0
+| | | | | | restecg = 1 : 1
+| | | | fbs = 1 : 0
+| | | sex = 1 : 
+| | | | trestbps = 0 : 
+| | | | | restecg = 0 : 
+| | | | | | chol = 0 : 
+| | | | | | | age = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | age = 1 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | chol = 1 : 
+| | | | | | | age = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | age = 1 : 1
+| | | | | restecg = 1 : 
+| | | | | | age = 0 : 
+| | | | | | | oldpeak = 0 : 1
+| | | | | | | oldpeak = 1 : 1
+| | | | | | age = 1 : 0
+| | | | trestbps = 1 : 
+| | | | | chol = 0 : 
+| | | | | | age = 0 : 
+| | | | | | | fbs = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | fbs = 1 : 1
+| | | | | | age = 1 : 
+| | | | | | | oldpeak = 0 : 0
+| | | | | | | oldpeak = 1 : 0
+| | | | | chol = 1 : 
+| | | | | | age = 0 : 1
+| | | | | | age = 1 : 
+| | | | | | | restecg = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | restecg = 1 : 1
+| oldpeak = 1 : 
+| | sex = 0 : 1
+| | sex = 1 : 
+| | | chol = 0 : 
+| | | | restecg = 0 : 0
+| | | | restecg = 1 : 
+| | | | | oldpeak = 0 : 0
+| | | | | oldpeak = 1 : 0
+| | | chol = 1 : 
+| | | | fbs = 0 : 1
+| | | | fbs = 1 : 0
+exang = 1 : 
+| sex = 0 : 
+| | age = 0 : 0
+| | age = 1 : 
+| | | fbs = 0 : 
+| | | | oldpeak = 0 : 0
+| | | | oldpeak = 1 : 1
+| | | fbs = 1 : 0
+| sex = 1 : 
+| | trestbps = 0 : 
+| | | oldpeak = 0 : 
+| | | | restecg = 0 : 0
+| | | | restecg = 1 : 
+| | | | | age = 0 : 0
+| | | | | age = 1 : 
+| | | | | | oldpeak = 0 : 0
+| | | | | | oldpeak = 1 : 0
+| | | oldpeak = 1 : 
+| | | | restecg = 0 : 
+| | | | | chol = 0 : 
+| | | | | | age = 0 : 
+| | | | | | | oldpeak = 0 : 1
+| | | | | | | oldpeak = 1 : 1
+| | | | | | age = 1 : 0
+| | | | | chol = 1 : 
+| | | | | | age = 0 : 0
+| | | | | | age = 1 : 1
+| | | | restecg = 1 : 1
+| | trestbps = 1 : 
+| | | oldpeak = 0 : 
+| | | | chol = 0 : 
+| | | | | age = 0 : 0
+| | | | | age = 1 : 
+| | | | | | restecg = 0 : 
+| | | | | | | oldpeak = 0 : 1
+| | | | | | | oldpeak = 1 : 1
+| | | | | | restecg = 1 : 0
+| | | | chol = 1 : 1
+| | | oldpeak = 1 : 
+| | | | chol = 0 : 
+| | | | | age = 0 : 0
+| | | | | age = 1 : 
+| | | | | | restecg = 0 : 
+| | | | | | | thalach = 0 : 
+| | | | | | | | oldpeak = 0 : 0
+| | | | | | | | oldpeak = 1 : 0
+| | | | | | | thalach = 1 : 0
+| | | | | | restecg = 1 : 0
+| | | | chol = 1 : 0
+########## pruned tree (using variance impurity heuristic) printed bellow #########
+
+exang = 0 : 
+| oldpeak = 0 : 
+| | thalach = 0 : 
+| | | fbs = 0 : 
+| | | | chol = 0 : 
+| | | | | trestbps = 0 : 
+| | | | | | sex = 0 : 1
+| | | | | | sex = 1 : 
+| | | | | | | age = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | age = 1 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | trestbps = 1 : 1
+| | | | chol = 1 : 1
+| | | fbs = 1 : 1
+| | thalach = 1 : 
+| | | sex = 0 : 
+| | | | fbs = 0 : 
+| | | | | trestbps = 0 : 1
+| | | | | trestbps = 1 : 1
+| | | | fbs = 1 : 0
+| | | sex = 1 : 
+| | | | trestbps = 0 : 
+| | | | | restecg = 0 : 
+| | | | | | chol = 0 : 
+| | | | | | | age = 0 : 1
+| | | | | | | age = 1 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | chol = 1 : 
+| | | | | | | age = 0 : 
+| | | | | | | | oldpeak = 0 : 1
+| | | | | | | | oldpeak = 1 : 1
+| | | | | | | age = 1 : 1
+| | | | | restecg = 1 : 
+| | | | | | age = 0 : 
+| | | | | | | oldpeak = 0 : 1
+| | | | | | | oldpeak = 1 : 1
+| | | | | | age = 1 : 0
+| | | | trestbps = 1 : 1
+| oldpeak = 1 : 
+| | sex = 0 : 1
+| | sex = 1 : 
+| | | chol = 0 : 
+| | | | restecg = 0 : 0
+| | | | restecg = 1 : 
+| | | | | oldpeak = 0 : 0
+| | | | | oldpeak = 1 : 0
+| | | chol = 1 : 
+| | | | fbs = 0 : 1
+| | | | fbs = 1 : 0
+exang = 1 : 
+| sex = 0 : 
+| | age = 0 : 0
+| | age = 1 : 
+| | | fbs = 0 : 
+| | | | oldpeak = 0 : 0
+| | | | oldpeak = 1 : 1
+| | | fbs = 1 : 0
+| sex = 1 : 
+| | trestbps = 0 : 
+| | | oldpeak = 0 : 
+| | | | restecg = 0 : 0
+| | | | restecg = 1 : 
+| | | | | age = 0 : 0
+| | | | | age = 1 : 
+| | | | | | oldpeak = 0 : 0
+| | | | | | oldpeak = 1 : 0
+| | | oldpeak = 1 : 
+| | | | restecg = 0 : 
+| | | | | chol = 0 : 
+| | | | | | age = 0 : 
+| | | | | | | oldpeak = 0 : 1
+| | | | | | | oldpeak = 1 : 1
+| | | | | | age = 1 : 0
+| | | | | chol = 1 : 
+| | | | | | age = 0 : 0
+| | | | | | age = 1 : 1
+| | | | restecg = 1 : 1
+| | trestbps = 1 : 
+| | | oldpeak = 0 : 0
+| | | oldpeak = 1 : 
+| | | | chol = 0 : 
+| | | | | age = 0 : 0
+| | | | | age = 1 : 
+| | | | | | restecg = 0 : 
+| | | | | | | thalach = 0 : 
+| | | | | | | | oldpeak = 0 : 0
+| | | | | | | | oldpeak = 1 : 0
+| | | | | | | thalach = 1 : 0
+| | | | | | restecg = 1 : 0
+| | | | chol = 1 : 0
+### Accuracy Information Reported Bellow: ###
+original tree (information gain heuristic) prediction accuracy on test set: 0.793103448276
+pruned tree (information gain heuristic) prediction accuracy on test set: 0.862068965517
+original tree (variance impurity heuristic) prediction accuracy on test set: 0.758620689655
+pruned tree (variance impurity heuristic) prediction accuracy on test set: 0.862068965517
+
+2. C4.5
+3. Logistic Regression
+4. Neural Network
+5. Support Vector Machine
+6. bagging+decision stump
+7. boosting+decision stump
+J48 Precission: 89.65517241379311
+Logistice Regression Precission: 87.93103448275862
+SVM Precission: 87.35632183908046
+Neural Network Precission: 86.20689655172414, Hidden Layer Size: 9
+Bagged Decision Stump Precission: 87.58620689655173
+Boosted Decision Stump Precission: 87.35632183908046
+
+$ 10 fold cross validation
+@ Use Original Data @
+10fldvali J48 Precission: 77.55102040816327
+10fldvali Logistice Regression Precission: 79.59183673469387
+10fldvali Neural Network Precission: 78.79818594104309, Hidden Layer Number: 9
+10fldvali SVM Precission: 79.16666666666667
+10fldvali Bagged Decision Stump Precission 79.45578231292517
+10fldvali Bossted Decision Stump Precission 79.47845804988663
+@ Use Binarized Data @
+10fldvali J48 Precission: 82.31292517006803
+10fldvali Logistice Regression Precission: 81.63265306122449
+10fldvali Neural Network Precission: 80.83900226757369, Hidden Layer Number: 9
+10fldvali SVM Precission: 80.95238095238095
+10fldvali Bagged Decision Stump Precission 81.0204081632653
+10fldvali Bossted Decision Stump Precission 81.06575963718821
+
+$ attribute ranking
+@ (Un-Binarized) Attribute Ranking Report:
+
+
+=== Attribute Selection on all input data ===
+
+Search Method:
+	Attribute ranking.
+
+Attribute Evaluator (supervised, Class (nominal): 11 num):
+	Information Gain Ranking Filter
+
+Ranked attributes:
+ 0.25393   3 cp
+ 0.24923   9 exang
+ 0.22447  10 oldpeak
+ 0.074     8 thalach
+ 0.05913   2 sex
+ 0.01821   6 fbs
+ 0.00276   7 restecg
+ 0         5 chol
+ 0         4 threstbps
+ 0         1 age
+
+Selected attributes: 3,9,10,8,2,6,7,5,4,1 : 10
+
+@ (Binarized) Attribute Ranking Report:
+
+
+=== Attribute Selection on all input data ===
+
+Search Method:
+	Attribute ranking.
+
+Attribute Evaluator (supervised, Class (nominal): 11 num):
+	Information Gain Ranking Filter
+
+Ranked attributes:
+ 0.2492   9 exang
+ 0.0765  10 oldpeak
+ 0.0591   2 sex
+ 0.0182   6 fbs
+ 0        4 trestbps
+ 0        3 cp
+ 0        5 chol
+ 0        7 restecg
+ 0        8 thalach
+ 0        1 age
+
+Selected attributes: 9,10,2,6,4,3,5,7,8,1 : 10
+
